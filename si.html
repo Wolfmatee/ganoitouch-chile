@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gano Itouch Chile | Premium Wellness</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0a',     // Deep architectural black
+                            brown: '#1a1412',    // Subtle dark espresso
+                            accent: '#cfa667',   // Muted elegant gold
+                            cream: '#f2eee9',    // Soft cream for text
+                            light: '#8a847d'     // Muted text for subtle elements
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f2eee9;
+            overflow-x: hidden;
+        }
+        
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cfa667;
+        }
+
+        .menu-open {
+            overflow: hidden;
+        }
+
+        /* Scroll Illumination Effect */
+        .illuminate-text {
+            opacity: 0.15;
+            transform: translateY(20px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        
+        .illuminate-text.is-illuminated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Standard Reveal Effect */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Hover Zoom (Strict Rectangles) */
+        .image-container {
+            overflow: hidden;
+            position: relative;
+            border-radius: 0 !important; 
+        }
+        
+        .image-container img {
+            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+            border-radius: 0 !important;
+            transform: scale(1.01); /* Prevent edge bleeding */
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-brand-cream selection:bg-brand-accent selection:text-brand-dark">
+
+    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-start mix-blend-difference">
+        <!-- New Architectural Geometric Logo -->
+        <a href="#" class="z-[60] relative flex flex-col items-center group outline-none">
+            <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+                <!-- Geometric G -->
+                <path d="M30 15 H12 V34 H30 V24 H21" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
+                <!-- Geometric I -->
+                <path d="M38 15 V34" stroke="white" stroke-width="1.5" stroke-linecap="square"/>
+            </svg>
+            <span class="font-sans font-light text-[0.55rem] tracking-[0.4em] text-white uppercase ml-1">
+                Gano Itouch
+            </span>
+        </a>
+
+        <!-- Minimalist Hamburger Menu -->
+        <button id="menuToggle" class="z-[60] relative flex flex-col justify-center items-end w-12 h-12 group focus:outline-none mt-2">
+            <span class="w-8 h-[1px] bg-white mb-2 transition-all duration-500 origin-right menu-line-1 group-hover:w-10"></span>
+            <span class="w-10 h-[1px] bg-white mb-2 transition-all duration-500 menu-line-2"></span>
+            <span class="w-6 h-[1px] bg-white transition-all duration-500 origin-right menu-line-3 group-hover:w-10"></span>
+            <span class="sr-only">Abrir Menú</span>
+        </button>
+    </header>
+
+    <!-- Full Screen Overlay Menu -->
+    <div id="overlayMenu" class="fixed inset-0 bg-brand-dark z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out">
+        <nav class="flex flex-col items-center gap-10 text-center">
+            <a href="#inicio" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Inicio</a>
+            <a href="#filosofia" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Filosofía</a>
+            <a href="#origen" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Origen</a>
+            <a href="#productos" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Productos</a>
+            <a href="#contacto" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Contacto</a>
+        </nav>
+    </div>
+
+    <main>
+        <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden bg-brand-dark">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-brand-dark/40 to-brand-dark z-10"></div>
+                <!-- Premium Coffee/Lifestyle Background Image -->
+                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Gano Itouch Premium" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Removed buttons below title as requested -->
+            <div class="relative z-20 text-center px-6 max-w-5xl mx-auto mt-20 reveal-up">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-brand-cream font-normal leading-[1.1] mb-6">
+                    El Bienestar que <br class="hidden md:block"/>
+                    <span class="italic text-white">Transforma</span> tu Estilo de Vida
+                </h1>
+            </div>
+        </section>
+
+        <section id="filosofia" class="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+                
+                <!-- Text Content (Left) -->
+                <div class="space-y-24 order-2 lg:order-1">
+                    <div>
+                        <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
+                            El Poder Transformador del <br><span class="italic text-brand-accent">Ganoderma Lucidum</span>
+                        </h2>
+                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            Venerado por más de 4.000 años y apodado el «rey de las hierbas». Cuenta con más de 150 antioxidantes, Omega 3 y 200 tipos diferentes de fitonutrientes que ayudan a fortalecer tu sistema inmunológico, promueven gran oxigenación corporal y desintoxican el organismo.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
+                            <span class="italic text-brand-accent">Trufa</span> Negra
+                        </h2>
+                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            No solo es valorada por su inmenso perfil aromático. Tiene un poder antioxidante gigante, proporciona energía natural y mejora exponencialmente tu digestión. Es rica en aminoácidos que complementan perfectamente tu nutrición.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Image Container (Right) -->
+                <div class="image-container w-full h-[60vh] lg:h-[100vh] order-1 lg:order-2 reveal-up">
+                    <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Ingredientes Naturales" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section id="origen" class="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+                
+                <!-- Image Container (Left) -->
+                <div class="image-container w-full h-[60vh] lg:h-[100vh] reveal-up">
+                    <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Plantaciones Malasia" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Text Content (Right) -->
+                <div class="space-y-24">
+                    <div>
+                        <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
+                            Plantaciones Orgánicas en <br><span class="italic text-brand-accent">Kedah, Malasia</span>
+                        </h2>
+                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            Poseemos las plantaciones orgánicas de Ganoderma Lucidum más grandes del mundo en Kedah, Malasia (Gano Discovery Centre). Operamos más de 100 invernaderos de última tecnología completamente estandarizados para que el hongo se mantenga intacto de cosecha en cosecha.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
+                            Producción <span class="italic text-brand-accent">Sustentable</span>
+                        </h2>
+                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            Produciendo de manera sustentable y a gran escala vegetal, hacemos que el consumo de esto que una vez fue reservado solo para la realeza china, ahora tenga un precio accesible para todos.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
+                            El Legado de <br><span class="italic text-brand-accent">Leow Soon Seng</span>
+                        </h2>
+                        <div class="space-y-6">
+                            <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                                Fundada en 1995 en Malasia por el investigador y micólogo Leow Soon Seng, Gano Excel nace tras 10 años de investigar profundamente múltiples tipos de hongos. Logramos estandarizar las 6 variedades más potentes de Ganoderma Lucidum y hoy somos pioneros mundiales en la industria del bienestar.
+                            </p>
+                            <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                                Con presencia en más de 70 países y más de 10 millones de consumidores en el mundo, en Gano Itouch Chile nuestra visión es «ser los primeros en la industria del bienestar». Fabricamos productos de altísima calidad que abren las puertas hacia una vida saludable y llena de prosperidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="productos" class="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto border-t border-[#1a1412]">
+            <div class="mb-24 reveal-up md:w-1/2">
+                <h3 class="font-sans text-xs tracking-[0.4em] uppercase text-brand-accent mb-6">Colección</h3>
+                <h2 class="font-serif text-4xl md:text-6xl text-brand-cream">Nuestros <span class="italic">Productos</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+                
+                <div class="group reveal-up cursor-pointer">
+                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
+                        <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Café Trufa Negra</h4>
+                        <p class="font-sans text-sm font-light text-brand-light">Fusión selecta con aroma intenso</p>
+                    </div>
+                </div>
+
+                <div class="group reveal-up cursor-pointer" style="transition-delay: 150ms;">
+                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
+                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Extracto Ganoderma</h4>
+                        <p class="font-sans text-sm font-light text-brand-light">Poder antioxidante concentrado</p>
+                    </div>
+                </div>
+
+                <div class="group reveal-up cursor-pointer" style="transition-delay: 300ms;">
+                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Mocha Premium</h4>
+                        <p class="font-sans text-sm font-light text-brand-light">Cacao enriquecido y bienestar</p>
+                    </div>
+                </div>
+
+                <div class="group reveal-up cursor-pointer" style="transition-delay: 450ms;">
+                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
+                        <img src="https://images.unsplash.com/photo-1582299878235-51ceea48c263?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Té Oolong</h4>
+                        <p class="font-sans text-sm font-light text-brand-light">Revitalización y equilibrio natural</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer id="contacto" class="bg-[#050505] border-t border-[#1a1412] pt-32 pb-16 px-6 md:px-12 lg:px-24">
+            <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 reveal-up">
+                
+                <div>
+                    <!-- Logo in Footer -->
+                    <a href="#" class="inline-flex flex-col items-start mb-12">
+                        <svg width="40" height="40" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+                            <path d="M30 15 H12 V34 H30 V24 H21" stroke="#cfa667" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
+                            <path d="M38 15 V34" stroke="#cfa667" stroke-width="1.5" stroke-linecap="square"/>
+                        </svg>
+                        <span class="font-sans font-light text-[0.6rem] tracking-[0.4em] text-white uppercase">
+                            Gano Itouch
+                        </span>
+                    </a>
+                    <h2 class="font-serif text-3xl md:text-4xl text-brand-cream mb-10">Contacto</h2>
+                    <ul class="space-y-8 font-sans font-light">
+                        <li>
+                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-3">Email</span>
+                            <a href="mailto:gmc.contratista2010@gmail.com" class="text-xl hover:text-brand-accent transition-colors">gmc.contratista2010@gmail.com</a>
+                        </li>
+                        <li>
+                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-3">WhatsApp</span>
+                            <a href="https://wa.me/56981611939" target="_blank" class="text-xl hover:text-brand-accent transition-colors">+56 9 8161 1939</a>
+                        </li>
+                        <li>
+                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-3">Ubicación</span>
+                            <span class="text-xl text-brand-cream">Viña del Mar, Valparaíso, Chile</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="flex items-end justify-start md:justify-end">
+                    <p class="text-[0.65rem] font-sans text-brand-light tracking-[0.3em] uppercase">
+                        &copy; 2026 Gano Itouch Chile. Todos los derechos reservados.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Full-screen Overlay Menu Logic
+            const menuToggle = document.getElementById('menuToggle');
+            const overlayMenu = document.getElementById('overlayMenu');
+            const menuLinks = document.querySelectorAll('.menu-link');
+            let isMenuOpen = false;
+
+            menuToggle.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                document.body.classList.toggle('menu-open');
+                
+                if (isMenuOpen) {
+                    // Show overlay
+                    overlayMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    overlayMenu.classList.add('opacity-100', 'pointer-events-auto');
+                    
+                    // Animate hamburger to 'X' with structural look
+                    menuToggle.querySelector('.menu-line-1').style.transform = 'rotate(-45deg) translate(-6px, 6px)';
+                    menuToggle.querySelector('.menu-line-1').style.width = '2rem';
+                    menuToggle.querySelector('.menu-line-2').style.opacity = '0';
+                    menuToggle.querySelector('.menu-line-3').style.transform = 'rotate(45deg) translate(-5px, -5px)';
+                    menuToggle.querySelector('.menu-line-3').style.width = '2rem';
+
+                    // Stagger animate links in
+                    menuLinks.forEach((link, index) => {
+                        setTimeout(() => {
+                            link.style.transform = 'translateY(0)';
+                            link.style.opacity = '1';
+                        }, 300 + (index * 120));
+                    });
+                } else {
+                    // Hide overlay
+                    overlayMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                    overlayMenu.classList.add('opacity-0', 'pointer-events-none');
+                    
+                    // Reset hamburger
+                    menuToggle.querySelector('.menu-line-1').style.transform = 'none';
+                    menuToggle.querySelector('.menu-line-1').style.width = '2rem';
+                    menuToggle.querySelector('.menu-line-2').style.opacity = '1';
+                    menuToggle.querySelector('.menu-line-3').style.transform = 'none';
+                    menuToggle.querySelector('.menu-line-3').style.width = '1.5rem';
+
+                    // Reset links out
+                    menuLinks.forEach((link) => {
+                        link.style.transform = 'translateY(2rem)';
+                        link.style.opacity = '0';
+                    });
+                }
+            });
+
+            // Close menu when clicking a link
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if(isMenuOpen) menuToggle.click();
+                });
+            });
+
+            // 2. Standard Reveal Observer (Images, Headers)
+            const revealOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, revealOptions);
+
+            document.querySelectorAll('.reveal-up').forEach((el) => {
+                revealObserver.observe(el);
+            });
+
+            // 3. Text Illumination Observer (For paragraphs fading/sliding in smoothly)
+            const illuminateOptions = {
+                root: null,
+                rootMargin: '0px 0px -15% 0px',
+                threshold: 0.1 
+            };
+
+            const illuminateObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-illuminated');
+                        // Optional: Unobserve if you want it to happen only once
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Remove class to repeat effect on scroll up/down
+                        entry.target.classList.remove('is-illuminated');
+                    }
+                });
+            }, illuminateOptions);
+
+            document.querySelectorAll('.illuminate-text').forEach((el) => {
+                illuminateObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
