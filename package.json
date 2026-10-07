@@ -7,9 +7,11 @@
     "dev": "node server.js",
     "build": "echo \"No build step required for static site\"",
     "start": "node server.js",
-    "lint": "node --check server.js"
+    "lint": "node --check server.js",
+    "test": "node --check server.js && node tests/test-backend.js && node tests/test-qa-integration.js"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "three": "^0.186.1"
   }
 }

@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
+  <!-- Geometric G -->
+  <path d="M40 20 H18 V44 H40 V32 H30" stroke="#cfa667" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="square"/>
+  <!-- Geometric I -->
+  <path d="M48 20 V44" stroke="#cfa667" stroke-width="2.5" stroke-linecap="square"/>
+</svg>

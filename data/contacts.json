@@ -1,0 +1,242 @@
+[
+  {
+    "id": "msg_1791405832455_n5r0l",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T20:43:52.455Z"
+  },
+  {
+    "id": "msg_1791405832023_mtt20",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T20:43:52.024Z"
+  },
+  {
+    "id": "msg_1791404971030_qkp5y",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T20:29:31.030Z"
+  },
+  {
+    "id": "msg_1791404970648_zti8x",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T20:29:30.648Z"
+  },
+  {
+    "id": "msg_1791404041464_xrmn4",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T20:14:01.464Z"
+  },
+  {
+    "id": "msg_1791404040933_dw1tj",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T20:14:00.933Z"
+  },
+  {
+    "id": "msg_1791402515975_5dvt4",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:48:35.975Z"
+  },
+  {
+    "id": "msg_1791402515201_xrs49",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:48:35.203Z"
+  },
+  {
+    "id": "msg_1791401866314_h09hs",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:37:46.315Z"
+  },
+  {
+    "id": "msg_1791401865847_4dtxb",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:37:45.847Z"
+  },
+  {
+    "id": "msg_1791401095865_ntp2e",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:24:55.865Z"
+  },
+  {
+    "id": "msg_1791401095398_8xxkm",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:24:55.399Z"
+  },
+  {
+    "id": "msg_1791400500639_78t3t",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:15:00.640Z"
+  },
+  {
+    "id": "msg_1791400500236_07ao3",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:15:00.236Z"
+  },
+  {
+    "id": "msg_1791400458976_2dr8s",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:14:18.976Z"
+  },
+  {
+    "id": "msg_1791400458438_fk73a",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:14:18.438Z"
+  },
+  {
+    "id": "msg_1791399627424_eaiyx",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:00:27.424Z"
+  },
+  {
+    "id": "msg_1791399626819_4sxy9",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T19:00:26.819Z"
+  },
+  {
+    "id": "msg_1791398342002_4de02",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "Té Oolong Ganoderma",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T18:39:02.002Z"
+  },
+  {
+    "id": "msg_1791398341617_c5pix",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T18:39:01.617Z"
+  },
+  {
+    "id": "msg_1791397437767_4tx49",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "Té Oolong Ganoderma",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T18:23:57.768Z"
+  },
+  {
+    "id": "msg_1791397437338_iztw9",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T18:23:57.339Z"
+  },
+  {
+    "id": "msg_1791397146561_dq5tl",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T18:19:06.562Z"
+  },
+  {
+    "id": "msg_1791397126534_qlrr6",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-07T18:18:46.535Z"
+  }
+]

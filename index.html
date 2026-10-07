@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gano Itouch Chile | Premium Wellness</title>
-    
+    <meta name="description"
+        content="Sitio web oficial de Gano Itouch Chile, productos de bienestar premium con Ganoderma Lucidum y Trufa Negra.">
+    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph / Redes Sociales & WhatsApp Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Gano Itouch Chile">
+    <meta property="og:title" content="Gano Itouch Chile | Premium Wellness">
+    <meta property="og:description"
+        content="Productos de bienestar premium con Ganoderma Lucidum y Trufa Negra. Envíos y entregas en Viña del Mar y todo Chile.">
+    <meta property="og:image" content="/src/assets/images/product_cafe_trufa_negra_1791228197245.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <!-- Three.js Real-Time 3D Engine & LatteRico 3D Packaging Renderer (Diferidos para no bloquear render) -->
+    <script defer src="/src/assets/three.min.js"></script>
+    <script defer src="/src/assets/latterico3d.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -31,24 +50,27 @@
             }
         }
     </script>
-    
+
     <style>
         body {
             background-color: #0a0a0a;
             color: #f2eee9;
             overflow-x: hidden;
         }
-        
+
         /* Minimalist Scrollbar */
         ::-webkit-scrollbar {
             width: 4px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0a0a0a;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #333;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #cfa667;
         }
@@ -64,7 +86,7 @@
             transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
             will-change: opacity, transform;
         }
-        
+
         .illuminate-text.is-illuminated {
             opacity: 1;
             transform: translateY(0);
@@ -76,6 +98,7 @@
             transform: translateY(40px);
             transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         .reveal-up.is-revealed {
             opacity: 1;
             transform: translateY(0);
@@ -85,69 +108,146 @@
         .image-container {
             overflow: hidden;
             position: relative;
-            border-radius: 0 !important; 
+            border-radius: 0 !important;
+            background-color: #141110;
         }
-        
+
         .image-container img {
             transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform;
             border-radius: 0 !important;
-            transform: scale(1.01); /* Prevent edge bleeding */
+            transform: scale(1.01);
+            /* Prevent edge bleeding */
         }
-        
+
         .image-container:hover img {
             transform: scale(1.08);
         }
+
+        /* Product View Transitions */
+        #productDetailView {
+            transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Pure 3D Coffee Box Object Styles */
+        .stage-3d {
+            perspective: 1400px;
+            perspective-origin: 50% 48%;
+        }
+
+        .box-container-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+            cursor: grab;
+        }
+
+        .box-container-3d:active {
+            cursor: grabbing;
+        }
+
+        .box-face {
+            position: absolute;
+            box-sizing: border-box;
+            background-color: #0d0c0a;
+            border: 1px solid rgba(207, 166, 103, 0.35);
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.85);
+            overflow: hidden;
+            backface-visibility: visible;
+        }
+
+        /* Gold Foil Ambient Sheen */
+        .box-face::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 25%, rgba(207, 166, 103, 0.08) 42%, rgba(255, 255, 255, 0.16) 48%, rgba(207, 166, 103, 0.08) 54%, transparent 75%);
+            background-size: 200% 200%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .box-shadow-floor {
+            transform: rotateX(90deg) translateZ(-140px);
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.95) 0%, rgba(207, 166, 103, 0.08) 40%, transparent 72%);
+            filter: blur(14px);
+        }
     </style>
 </head>
+
 <body class="font-sans antialiased text-brand-cream selection:bg-brand-accent selection:text-brand-dark">
 
     <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-start mix-blend-difference">
-        <!-- New Architectural Geometric Logo -->
-        <a href="#" class="z-[60] relative flex flex-col items-center group outline-none">
+        <!-- Architectural Geometric Logo -->
+        <a href="#inicio" id="brandLogoLink" class="z-[60] relative flex flex-col items-center group outline-none">
             <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
                 <!-- Geometric G -->
-                <path d="M30 15 H12 V34 H30 V24 H21" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
+                <path d="M30 15 H12 V34 H30 V24 H21" stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                    stroke-linecap="square" />
                 <!-- Geometric I -->
-                <path d="M38 15 V34" stroke="white" stroke-width="1.5" stroke-linecap="square"/>
+                <path d="M38 15 V34" stroke="white" stroke-width="1.5" stroke-linecap="square" />
             </svg>
             <span class="font-sans font-light text-[0.55rem] tracking-[0.4em] text-white uppercase ml-1">
                 Gano Itouch
             </span>
         </a>
 
-        <!-- Minimalist Hamburger Menu -->
-        <button id="menuToggle" class="z-[60] relative flex flex-col justify-center items-end w-12 h-12 group focus:outline-none mt-2">
-            <span class="w-8 h-[1px] bg-white mb-2 transition-all duration-500 origin-right menu-line-1 group-hover:w-10"></span>
-            <span class="w-10 h-[1px] bg-white mb-2 transition-all duration-500 menu-line-2"></span>
-            <span class="w-6 h-[1px] bg-white transition-all duration-500 origin-right menu-line-3 group-hover:w-10"></span>
-            <span class="sr-only">Abrir Menú</span>
-        </button>
+        <!-- Right Header Controls (Back button when in product detail + Minimalist Hamburger Menu) -->
+        <div class="z-[60] relative flex items-center gap-6 md:gap-8">
+            <button id="headerBackBtn" type="button"
+                class="hidden text-xs md:text-sm font-sans font-light tracking-[0.2em] uppercase text-white underline underline-offset-4 hover:opacity-75 transition-opacity mt-2 whitespace-nowrap">
+                ← Volver a productos
+            </button>
+
+            <a href="https://wa.me/56981611939?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Gano%20Itouch%20Chile%20y%20me%20gustar%C3%ADa%20consultar%20por%20los%20productos."
+                target="_blank" rel="noopener noreferrer"
+                class="text-xs md:text-sm font-sans font-light tracking-wider text-white underline underline-offset-4 hover:opacity-75 transition-opacity mt-2 whitespace-nowrap">
+                consultar wsp
+            </a>
+
+            <button id="menuToggle"
+                class="relative flex flex-col justify-center items-end w-12 h-12 group focus:outline-none mt-2">
+                <span
+                    class="w-8 h-[1px] bg-white mb-2 transition-all duration-500 origin-right menu-line-1 group-hover:w-10"></span>
+                <span class="w-10 h-[1px] bg-white mb-2 transition-all duration-500 menu-line-2"></span>
+                <span
+                    class="w-6 h-[1px] bg-white transition-all duration-500 origin-right menu-line-3 group-hover:w-10"></span>
+                <span class="sr-only">Abrir Menú</span>
+            </button>
+        </div>
     </header>
 
     <!-- Full Screen Overlay Menu -->
-    <div id="overlayMenu" class="fixed inset-0 bg-brand-dark z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out">
+    <div id="overlayMenu"
+        class="fixed inset-0 bg-brand-dark z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out">
         <nav class="flex flex-col items-center gap-10 text-center">
-            <a href="#inicio" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Inicio</a>
-            <a href="#filosofia" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Filosofía</a>
-            <a href="#origen" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Origen</a>
-            <a href="#productos" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Productos</a>
-            <a href="#contacto" class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Contacto</a>
+            <a href="#inicio"
+                class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Inicio</a>
+            <a href="#filosofia"
+                class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Filosofía</a>
+            <a href="#origen"
+                class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Origen</a>
+            <a href="#productos"
+                class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Productos</a>
+            <a href="#contacto"
+                class="menu-link font-serif text-4xl md:text-6xl text-brand-cream/30 hover:text-white transition-colors duration-500 transform translate-y-8 opacity-0 italic">Contacto</a>
         </nav>
     </div>
 
-    <main>
+    <!-- MAIN LANDING VIEW -->
+    <main id="mainHomeView">
         <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden bg-brand-dark">
             <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-brand-dark/40 to-brand-dark z-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-brand-dark/40 to-brand-dark z-10">
+                </div>
                 <!-- Premium Coffee/Lifestyle Background Image -->
-                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Gano Itouch Premium" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                    alt="Gano Itouch Premium" referrerpolicy="no-referrer" class="w-full h-full object-cover">
             </div>
 
-            <!-- Removed buttons below title as requested -->
-            <div class="relative z-20 text-center px-6 max-w-5xl mx-auto mt-20 reveal-up">
+            <div class="relative z-20 text-center px-6 max-w-5xl mx-auto mt-20 reveal-up is-revealed">
                 <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-brand-cream font-normal leading-[1.1] mb-6">
-                    El Bienestar que <br class="hidden md:block"/>
+                    El Bienestar que <br class="hidden md:block" />
                     <span class="italic text-white">Transforma</span> tu Estilo de Vida
                 </h1>
             </div>
@@ -155,15 +255,19 @@
 
         <section id="filosofia" class="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
-                
+
                 <!-- Text Content (Left) -->
                 <div class="space-y-24 order-2 lg:order-1">
                     <div>
                         <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
-                            El Poder Transformador del <br><span class="italic text-brand-accent">Ganoderma Lucidum</span>
+                            El Poder Transformador del <br><span class="italic text-brand-accent">Ganoderma
+                                Lucidum</span>
                         </h2>
-                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
-                            Venerado por más de 4.000 años y apodado el «rey de las hierbas». Cuenta con más de 150 antioxidantes, Omega 3 y 200 tipos diferentes de fitonutrientes que ayudan a fortalecer tu sistema inmunológico, promueven gran oxigenación corporal y desintoxican el organismo.
+                        <p
+                            class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            Venerado por más de 4.000 años y apodado el «rey de las hierbas». Cuenta con más de 150
+                            antioxidantes, Omega 3 y 200 tipos diferentes de fitonutrientes que ayudan a fortalecer tu
+                            sistema inmunológico, promueven gran oxigenación corporal y desintoxican el organismo.
                         </p>
                     </div>
 
@@ -171,25 +275,30 @@
                         <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
                             <span class="italic text-brand-accent">Trufa</span> Negra
                         </h2>
-                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
-                            No solo es valorada por su inmenso perfil aromático. Tiene un poder antioxidante gigante, proporciona energía natural y mejora exponencialmente tu digestión. Es rica en aminoácidos que complementan perfectamente tu nutrición.
+                        <p
+                            class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            No solo es valorada por su inmenso perfil aromático. Tiene un poder antioxidante gigante,
+                            proporciona energía natural y mejora exponencialmente tu digestión. Es rica en aminoácidos
+                            que complementan perfectamente tu nutrición.
                         </p>
                     </div>
                 </div>
-                
+
                 <!-- Image Container (Right) -->
                 <div class="image-container w-full h-[60vh] lg:h-[100vh] order-1 lg:order-2 reveal-up">
-                    <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Ingredientes Naturales" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                        alt="Ingredientes Naturales" referrerpolicy="no-referrer" class="w-full h-full object-cover">
                 </div>
             </div>
         </section>
 
         <section id="origen" class="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
-                
+
                 <!-- Image Container (Left) -->
                 <div class="image-container w-full h-[60vh] lg:h-[100vh] reveal-up">
-                    <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Plantaciones Malasia" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                        alt="Plantaciones Malasia" referrerpolicy="no-referrer" class="w-full h-full object-cover">
                 </div>
 
                 <!-- Text Content (Right) -->
@@ -198,8 +307,11 @@
                         <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
                             Plantaciones Orgánicas en <br><span class="italic text-brand-accent">Kedah, Malasia</span>
                         </h2>
-                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
-                            Poseemos las plantaciones orgánicas de Ganoderma Lucidum más grandes del mundo en Kedah, Malasia (Gano Discovery Centre). Operamos más de 100 invernaderos de última tecnología completamente estandarizados para que el hongo se mantenga intacto de cosecha en cosecha.
+                        <p
+                            class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            Poseemos las plantaciones orgánicas de Ganoderma Lucidum más grandes del mundo en Kedah,
+                            Malasia (Gano Discovery Centre). Operamos más de 100 invernaderos de última tecnología
+                            completamente estandarizados para que el hongo se mantenga intacto de cosecha en cosecha.
                         </p>
                     </div>
 
@@ -207,8 +319,11 @@
                         <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-10 reveal-up">
                             Producción <span class="italic text-brand-accent">Sustentable</span>
                         </h2>
-                        <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
-                            Produciendo de manera sustentable y a gran escala vegetal, hacemos que el consumo de esto que una vez fue reservado solo para la realeza china, ahora tenga un precio accesible para todos.
+                        <p
+                            class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                            Produciendo de manera sustentable y a gran escala vegetal, hacemos que el consumo de esto
+                            que una vez fue reservado solo para la realeza china, ahora tenga un precio accesible para
+                            todos.
                         </p>
                     </div>
 
@@ -217,114 +332,643 @@
                             El Legado de <br><span class="italic text-brand-accent">Leow Soon Seng</span>
                         </h2>
                         <div class="space-y-6">
-                            <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
-                                Fundada en 1995 en Malasia por el investigador y micólogo Leow Soon Seng, Gano Excel nace tras 10 años de investigar profundamente múltiples tipos de hongos. Logramos estandarizar las 6 variedades más potentes de Ganoderma Lucidum y hoy somos pioneros mundiales en la industria del bienestar.
+                            <p
+                                class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                                Fundada en 1995 en Malasia por el investigador y micólogo Leow Soon Seng, Gano Excel
+                                nace tras 10 años de investigar profundamente múltiples tipos de hongos. Logramos
+                                estandarizar las 6 variedades más potentes de Ganoderma Lucidum y hoy somos pioneros
+                                mundiales en la industria del bienestar.
                             </p>
-                            <p class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
-                                Con presencia en más de 70 países y más de 10 millones de consumidores en el mundo, en Gano Itouch Chile nuestra visión es «ser los primeros en la industria del bienestar». Fabricamos productos de altísima calidad que abren las puertas hacia una vida saludable y llena de prosperidad.
+                            <p
+                                class="font-sans font-light leading-relaxed text-lg md:text-xl text-brand-light illuminate-text">
+                                Con presencia en más de 70 países y más de 10 millones de consumidores en el mundo, en
+                                Gano Itouch Chile nuestra visión es «ser los primeros en la industria del bienestar».
+                                Fabricamos productos de altísima calidad que abren las puertas hacia una vida saludable
+                                y llena de prosperidad.
                             </p>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </section>
 
+        <!-- NUESTROS PRODUCTOS (Editorial Asymmetric Showcase inspired by Reference 4) -->
         <section id="productos" class="py-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto border-t border-[#1a1412]">
-            <div class="mb-24 reveal-up md:w-1/2">
-                <h3 class="font-sans text-xs tracking-[0.4em] uppercase text-brand-accent mb-6">Colección</h3>
-                <h2 class="font-serif text-4xl md:text-6xl text-brand-cream">Nuestros <span class="italic">Productos</span></h2>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-24 reveal-up gap-8">
+                <div>
+                    <h3 class="font-sans text-xs tracking-[0.4em] uppercase text-brand-accent mb-6">Colección</h3>
+                    <h2 class="font-serif text-4xl md:text-6xl text-brand-cream">Nuestros <span
+                            class="italic">Productos</span></h2>
+                </div>
+                <p class="font-sans font-light text-sm md:text-base text-brand-light max-w-md">
+                    Selecciona cualquier producto de la colección para explorar su composición, galería detallada y
+                    disponibilidad directa.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-                
-                <div class="group reveal-up cursor-pointer">
-                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
-                        <img src="https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div>
-                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Café Trufa Negra</h4>
-                        <p class="font-sans text-sm font-light text-brand-light">Fusión selecta con aroma intenso</p>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start">
 
-                <div class="group reveal-up cursor-pointer" style="transition-delay: 150ms;">
-                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
-                        <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                <!-- Producto 1: ClassiRico Truffle -->
+                <article data-product-card="classirico-truffle" tabindex="0" role="button"
+                    aria-label="Ver detalles de ClassiRico Truffle"
+                    class="group reveal-up cursor-pointer focus:outline-none">
+                    <div class="image-container w-full aspect-[3/4] mb-6 bg-[#1a1412]">
+                        <img src="/src/assets/images/product_cafe_trufa_negra_1791228197245.jpg"
+                            alt="ClassiRico Truffle" referrerpolicy="no-referrer"
+                            class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div>
-                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Extracto Ganoderma</h4>
-                        <p class="font-sans text-sm font-light text-brand-light">Poder antioxidante concentrado</p>
+                    <div class="flex items-baseline justify-between gap-4">
+                        <div>
+                            <h4
+                                class="font-serif text-2xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">
+                                ClassiRico Truffle</h4>
+                            <p class="font-sans text-sm font-light text-brand-light">Café negro tostado intenso con
+                                trufa</p>
+                        </div>
+                        <span
+                            class="font-sans text-xs tracking-widest uppercase text-brand-light group-hover:text-brand-cream transition-colors shrink-0">Ver
+                            →</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="group reveal-up cursor-pointer" style="transition-delay: 300ms;">
-                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
-                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                <!-- Producto 2: LatteRico Truffle -->
+                <article data-product-card="latterico-truffle" tabindex="0" role="button"
+                    aria-label="Ver detalles de LatteRico Truffle"
+                    class="group reveal-up cursor-pointer md:mt-12 focus:outline-none" style="transition-delay: 150ms;">
+                    <div class="image-container w-full aspect-[3/4] mb-6 bg-[#1a1412]">
+                        <img src="/src/assets/images/product_latterico_truffle.jpg" alt="LatteRico Truffle"
+                            referrerpolicy="no-referrer"
+                            class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div>
-                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Mocha Premium</h4>
-                        <p class="font-sans text-sm font-light text-brand-light">Cacao enriquecido y bienestar</p>
+                    <div class="flex items-baseline justify-between gap-4">
+                        <div>
+                            <h4
+                                class="font-serif text-2xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">
+                                LatteRico Truffle</h4>
+                            <p class="font-sans text-sm font-light text-brand-light">Café latte cremoso & suave con
+                                trufa</p>
+                        </div>
+                        <span
+                            class="font-sans text-xs tracking-widest uppercase text-brand-light group-hover:text-brand-cream transition-colors shrink-0">Ver
+                            →</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="group reveal-up cursor-pointer" style="transition-delay: 450ms;">
-                    <div class="image-container w-full aspect-[4/5] mb-8 bg-[#1a1412]">
-                        <img src="https://images.unsplash.com/photo-1582299878235-51ceea48c263?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Producto" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                <!-- Producto 3: ShokoRico Truffle -->
+                <article data-product-card="shokorico-truffle" tabindex="0" role="button"
+                    aria-label="Ver detalles de ShokoRico Truffle"
+                    class="group reveal-up cursor-pointer focus:outline-none" style="transition-delay: 300ms;">
+                    <div class="image-container w-full aspect-[3/4] mb-6 bg-[#1a1412]">
+                        <img src="/src/assets/images/product_mocha_premium_1791228217124.jpg" alt="ShokoRico Truffle"
+                            referrerpolicy="no-referrer"
+                            class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
                     </div>
-                    <div>
-                        <h4 class="font-serif text-2xl text-brand-cream mb-3 group-hover:text-brand-accent transition-colors">Té Oolong</h4>
-                        <p class="font-sans text-sm font-light text-brand-light">Revitalización y equilibrio natural</p>
+                    <div class="flex items-baseline justify-between gap-4">
+                        <div>
+                            <h4
+                                class="font-serif text-2xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">
+                                ShokoRico Truffle</h4>
+                            <p class="font-sans text-sm font-light text-brand-light">Cacao fino & chocolate con trufa
+                            </p>
+                        </div>
+                        <span
+                            class="font-sans text-xs tracking-widest uppercase text-brand-light group-hover:text-brand-cream transition-colors shrink-0">Ver
+                            →</span>
                     </div>
-                </div>
+                </article>
 
             </div>
         </section>
 
         <footer id="contacto" class="bg-[#050505] border-t border-[#1a1412] pt-32 pb-16 px-6 md:px-12 lg:px-24">
-            <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 reveal-up">
-                
+            <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 reveal-up">
+
                 <div>
                     <!-- Logo in Footer -->
-                    <a href="#" class="inline-flex flex-col items-start mb-12">
-                        <svg width="40" height="40" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
-                            <path d="M30 15 H12 V34 H30 V24 H21" stroke="#cfa667" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="square"/>
-                            <path d="M38 15 V34" stroke="#cfa667" stroke-width="1.5" stroke-linecap="square"/>
+                    <a href="#inicio" class="inline-flex flex-col items-start mb-12">
+                        <svg width="40" height="40" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="mb-3">
+                            <path d="M30 15 H12 V34 H30 V24 H21" stroke="#cfa667" stroke-width="1.5"
+                                stroke-miterlimit="10" stroke-linecap="square" />
+                            <path d="M38 15 V34" stroke="#cfa667" stroke-width="1.5" stroke-linecap="square" />
                         </svg>
                         <span class="font-sans font-light text-[0.6rem] tracking-[0.4em] text-white uppercase">
                             Gano Itouch
                         </span>
                     </a>
-                    <h2 class="font-serif text-3xl md:text-4xl text-brand-cream mb-10">Contacto</h2>
-                    <ul class="space-y-8 font-sans font-light">
+                    <h2 class="font-serif text-3xl md:text-5xl text-brand-cream mb-6">Contacto & Pedidos</h2>
+                    <p
+                        class="font-sans font-light text-brand-light leading-relaxed mb-10 max-w-md text-base md:text-lg">
+                        Distribuimos la línea oficial de Gano Itouch con entregas personales en Viña del Mar, Valparaíso
+                        y despachos certificados a todo Chile.
+                    </p>
+                    <ul class="space-y-6 font-sans font-light mb-8">
                         <li>
-                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-3">Email</span>
-                            <a href="mailto:gmc.contratista2010@gmail.com" class="text-xl hover:text-brand-accent transition-colors">gmc.contratista2010@gmail.com</a>
+                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-2">Email
+                                Oficial</span>
+                            <a href="mailto:gmc.contratista2010@gmail.com"
+                                class="text-lg md:text-xl text-brand-cream hover:text-brand-accent transition-colors">gmc.contratista2010@gmail.com</a>
                         </li>
                         <li>
-                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-3">WhatsApp</span>
-                            <a href="https://wa.me/56981611939" target="_blank" class="text-xl hover:text-brand-accent transition-colors">+56 9 8161 1939</a>
+                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-2">WhatsApp
+                                Directo</span>
+                            <a href="https://wa.me/56981611939?text=Hola%2C%20me%20interesan%20los%20productos%20de%20Gano%20Itouch%20Chile."
+                                target="_blank" rel="noopener noreferrer"
+                                class="text-lg md:text-xl text-brand-accent hover:text-brand-cream transition-colors font-normal">+56
+                                9 8161 1939</a>
                         </li>
                         <li>
-                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-3">Ubicación</span>
-                            <span class="text-xl text-brand-cream">Viña del Mar, Valparaíso, Chile</span>
+                            <span class="block text-xs uppercase tracking-[0.3em] text-brand-light mb-2">Ubicación y
+                                Despachos</span>
+                            <span class="text-lg md:text-xl text-brand-cream">Viña del Mar, Valparaíso, Chile</span>
                         </li>
                     </ul>
                 </div>
-                
-                <div class="flex items-end justify-start md:justify-end">
-                    <p class="text-[0.65rem] font-sans text-brand-light tracking-[0.3em] uppercase">
-                        &copy; 2026 Gano Itouch Chile. Todos los derechos reservados.
-                    </p>
+
+                <!-- Formulario Interactivo de Cotización y Consulta -->
+                <div class="bg-[#0e0c0b] border border-[#231b17] p-8 md:p-12 relative flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.35em] text-brand-accent block mb-3">Atención
+                            Directa</span>
+                        <h3 class="font-serif text-2xl md:text-3xl text-brand-cream mb-6">Solicitar Información o
+                            Cotización</h3>
+
+                        <form id="contactForm" class="space-y-5">
+                            <div>
+                                <label for="contactName"
+                                    class="block font-sans text-xs uppercase tracking-wider text-brand-light mb-2">Nombre
+                                    Completo *</label>
+                                <input type="text" id="contactName" required placeholder="Ej: Marcela Morales"
+                                    class="w-full bg-[#161210] border border-[#2a221d] px-4 py-3 text-brand-cream placeholder-brand-light/40 focus:border-brand-accent focus:outline-none transition-colors">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="contactEmail"
+                                        class="block font-sans text-xs uppercase tracking-wider text-brand-light mb-2">Correo
+                                        Electrónico</label>
+                                    <input type="email" id="contactEmail" placeholder="contacto@ejemplo.cl"
+                                        class="w-full bg-[#161210] border border-[#2a221d] px-4 py-3 text-brand-cream placeholder-brand-light/40 focus:border-brand-accent focus:outline-none transition-colors">
+                                </div>
+                                <div>
+                                    <label for="contactPhone"
+                                        class="block font-sans text-xs uppercase tracking-wider text-brand-light mb-2">Teléfono
+                                        / WhatsApp *</label>
+                                    <input type="tel" id="contactPhone" required placeholder="+56 9 1234 5678"
+                                        class="w-full bg-[#161210] border border-[#2a221d] px-4 py-3 text-brand-cream placeholder-brand-light/40 focus:border-brand-accent focus:outline-none transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="contactProduct"
+                                    class="block font-sans text-xs uppercase tracking-wider text-brand-light mb-2">Producto
+                                    de Interés</label>
+                                <select id="contactProduct"
+                                    class="w-full bg-[#161210] border border-[#2a221d] px-4 py-3 text-brand-cream focus:border-brand-accent focus:outline-none transition-colors cursor-pointer">
+                                    <option value="Consulta General">Colección Completa / Consulta General</option>
+                                    <option value="ClassiRico Truffle">ClassiRico Truffle (Café Negro)</option>
+                                    <option value="LatteRico Truffle">LatteRico Truffle (Café Latte)</option>
+                                    <option value="ShokoRico Truffle">ShokoRico Truffle (Cacao Gourmet)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="contactMessage"
+                                    class="block font-sans text-xs uppercase tracking-wider text-brand-light mb-2">Mensaje
+                                    o Consulta *</label>
+                                <textarea id="contactMessage" rows="3" required
+                                    placeholder="Escribe aquí tu consulta, cantidad de cajas o dudas sobre entregas..."
+                                    class="w-full bg-[#161210] border border-[#2a221d] px-4 py-3 text-brand-cream placeholder-brand-light/40 focus:border-brand-accent focus:outline-none transition-colors resize-none"></textarea>
+                            </div>
+
+                            <div id="contactFormStatus" class="hidden text-sm py-3 px-4 border"></div>
+
+                            <button type="submit" id="contactSubmitBtn"
+                                class="w-full py-4 bg-brand-accent text-brand-dark font-sans text-xs font-medium uppercase tracking-[0.25em] hover:bg-brand-cream transition-colors flex items-center justify-center gap-3 cursor-pointer">
+                                <span>Enviar Mensaje</span>
+                                <span class="text-sm">→</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+
+            </div>
+
+            <div
+                class="max-w-[1600px] mx-auto mt-20 pt-8 border-t border-[#1a1412] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-[0.65rem] font-sans text-brand-light tracking-[0.3em] uppercase">
+                    &copy; 2026 Gano Itouch Chile. Todos los derechos reservados.
+                </p>
+                <span class="text-[0.65rem] font-sans text-brand-light/60 tracking-wider">
+                    Viña del Mar & Valparaíso · Envíos certificados a todo Chile
+                </span>
             </div>
         </footer>
     </main>
 
+    <!-- ======================================================================= -->
+    <!-- PRODUCT DETAIL VIEW (Inspired by "El Cantón" Architectural Project View) -->
+    <!-- ======================================================================= -->
+    <section id="productDetailView" class="hidden min-h-screen bg-[#0a0a0a] text-brand-cream">
+
+        <!-- 1. Fullscreen Hero with Top-Left Thin Title & Bottom 4-Data-Point Bar (Reference Image 1) -->
+        <div class="relative h-screen w-full overflow-hidden bg-[#0a0a0a]">
+            <!-- Static Image Hero (para productos sin video) -->
+            <img id="detailHeroImg" src="" alt="" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+
+            <!-- Video Hero ("Cara Principal" del producto con video como LatteRico Truffle) -->
+            <video id="detailHeroVideo"
+                class="hidden absolute inset-0 w-full h-full object-contain md:object-cover bg-[#0a0a0a]" autoplay loop
+                muted playsinline preload="auto">
+                <source id="detailHeroVideoSource" src="" type="video/mp4">
+            </video>
+
+            <!-- Subtle top & bottom gradient scrims for guaranteed legibility -->
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/85 pointer-events-none z-10">
+            </div>
+
+            <!-- Upper-Left Architectural Product Title (Like "El Cantón") -->
+            <div class="absolute top-28 md:top-32 left-6 md:left-16 z-20 max-w-4xl pr-6">
+                <h1 id="detailTitle"
+                    class="font-sans font-extralight text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] text-white tracking-tight leading-none">
+                    Café Trufa Negra
+                </h1>
+            </div>
+
+            <!-- Bottom Translucent Metadata Bar with 4 Columns (Like Superficie / Año / Ubicación / Servicio) -->
+            <div
+                class="absolute bottom-0 left-0 w-full z-20 bg-black/70 backdrop-blur-md border-t border-white/10 px-6 md:px-16 py-6 md:py-7">
+                <div class="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">
+                    <div>
+                        <span id="detailMeta1Label"
+                            class="block font-sans text-[11px] md:text-xs font-light text-white/60 mb-1">Formato</span>
+                        <span id="detailMeta1Value"
+                            class="block font-sans text-sm md:text-base font-normal text-white">Caja · 20 Sobres</span>
+                    </div>
+                    <div>
+                        <span id="detailMeta2Label"
+                            class="block font-sans text-[11px] md:text-xs font-light text-white/60 mb-1">Origen</span>
+                        <span id="detailMeta2Value"
+                            class="block font-sans text-sm md:text-base font-normal text-white">Kedah, Malasia</span>
+                    </div>
+                    <div>
+                        <span id="detailMeta3Label"
+                            class="block font-sans text-[11px] md:text-xs font-light text-white/60 mb-1">Ingredientes
+                            Clave</span>
+                        <span id="detailMeta3Value"
+                            class="block font-sans text-sm md:text-base font-normal text-white">Ganoderma Lucidum &
+                            Trufa Negra</span>
+                    </div>
+                    <div>
+                        <span id="detailMeta4Label"
+                            class="block font-sans text-[11px] md:text-xs font-light text-white/60 mb-1">Beneficio
+                            Principal</span>
+                        <span id="detailMeta4Value"
+                            class="block font-sans text-sm md:text-base font-normal text-white">Energía Natural,
+                            Inmunidad & Digestión</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Editorial Short Paragraph on Pure Black Background (Reference Image 3) -->
+        <div class="bg-[#0a0a0a] py-28 md:py-44 px-6 md:px-16">
+            <div class="max-w-5xl mx-auto">
+                <p id="detailEditorialText"
+                    class="font-sans font-extralight text-xl sm:text-2xl md:text-[1.85rem] leading-[1.65] text-brand-cream/90 tracking-wide">
+                    Fusión selecta de café arábica recién tostado con extracto orgánico de Ganoderma Lucidum y el perfil
+                    aromático profundo de la trufa negra, desarrollada para entregar energía limpia, potenciar el
+                    sistema inmunológico y favorecer una digestión ligera en cada taza.
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. Rectangular Architectural Photo Gallery (Reference Image 2: Wide -> 2 Columns -> Wide) -->
+        <div class="max-w-[1500px] mx-auto px-6 md:px-16 pb-28 space-y-8 md:space-y-12">
+
+            <!-- Gallery Photo 1: Full-Width Wide Shot -->
+            <div class="image-container w-full h-[48vh] md:h-[78vh]">
+                <img id="detailGallery1" src="" alt="" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Gallery Photos 2 & 3: Two Side-by-Side Rectangular Shots -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div class="image-container w-full h-[42vh] md:h-[60vh]">
+                    <img id="detailGallery2" src="" alt="" referrerpolicy="no-referrer"
+                        class="w-full h-full object-cover">
+                </div>
+                <div class="image-container w-full h-[42vh] md:h-[60vh]">
+                    <img id="detailGallery3" src="" alt="" referrerpolicy="no-referrer"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Gallery Photo 4: Full-Width Wide Closing Shot -->
+            <div class="image-container w-full h-[48vh] md:h-[75vh]">
+                <img id="detailGallery4" src="" alt="" referrerpolicy="no-referrer" class="w-full h-full object-cover">
+            </div>
+
+        </div>
+
+        <!-- 4. Direct WhatsApp Inquiry & Next Product Navigation -->
+        <div class="border-t border-[#1a1412] bg-[#050505] py-24 px-6 md:px-16">
+            <div
+                class="max-w-[1500px] mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+                <div class="max-w-xl">
+                    <span class="block font-sans text-xs uppercase tracking-[0.35em] text-brand-accent mb-4">Atención
+                        Directa · Chile</span>
+                    <h2 id="detailCtaHeading" class="font-serif text-3xl md:text-5xl text-brand-cream mb-4">
+                        ¿Te interesa probar Café Trufa Negra?
+                    </h2>
+                    <p class="font-sans font-light text-base md:text-lg text-brand-light leading-relaxed">
+                        Contáctanos directamente por WhatsApp para consultar valor por caja, promociones disponibles y
+                        coordinar tu entrega en Viña del Mar, Valparaíso o envío a todo Chile.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 w-full lg:w-auto">
+                    <a id="detailWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center px-8 py-4 bg-brand-accent text-brand-dark font-sans text-xs md:text-sm font-medium uppercase tracking-[0.25em] hover:bg-brand-cream transition-colors whitespace-nowrap">
+                        Consultar por WhatsApp →
+                    </a>
+                    <button id="detailBackBottomBtn" type="button"
+                        class="inline-flex items-center justify-center px-8 py-4 border border-white/20 text-brand-cream font-sans text-xs md:text-sm font-light uppercase tracking-[0.25em] hover:border-brand-accent hover:text-brand-accent transition-colors whitespace-nowrap">
+                        ← Volver a Productos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Next Product Strip -->
+            <div
+                class="max-w-[1500px] mx-auto mt-20 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <span class="font-sans text-xs uppercase tracking-[0.3em] text-brand-light">Explorar más de la
+                    colección</span>
+                <button id="detailNextProductBtn" type="button"
+                    class="group inline-flex items-center gap-4 font-serif text-2xl md:text-3xl text-brand-cream hover:text-brand-accent transition-colors">
+                    <span id="detailNextProductName" class="italic">Extracto Ganoderma</span>
+                    <span class="font-sans font-light text-lg group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+            </div>
+        </div>
+
+    </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. Full-screen Overlay Menu Logic
+
+            // =========================================================================
+            // 1. Catalog Data for the 4 Products (GanoCafé Truffle Lineup)
+            // =========================================================================
+            const PRODUCTS = {
+                'classirico-truffle': {
+                    id: 'classirico-truffle',
+                    title: 'ClassiRico Truffle',
+                    heroImage: '/src/assets/images/product_cafe_trufa_negra_1791228197245.jpg',
+                    meta: [
+                        { label: 'Formato', value: 'Caja · 30 Sobres (90g neto)' },
+                        { label: 'Origen', value: 'Kedah, Malasia · Plantaciones Orgánicas' },
+                        { label: 'Composición', value: 'Café Tostado Clásico, Ganoderma & Trufa Negra' },
+                        { label: 'Beneficio Principal', value: 'Energía Pura, Concentración & Cero Acidez' }
+                    ],
+                    editorialText: 'Café negro de tueste intenso y cuerpo equilibrado, enriquecido con extracto puro estandarizado de Ganoderma Lucidum y el perfil aromático de la trufa negra. Diseñado para los apasionados del café auténtico sin azúcar ni aditivos, entregando energía constante a lo largo del día sin provocar pesadez ni acidez gástrica.',
+                    gallery: [
+                        '/src/assets/images/product_cafe_trufa_negra_1791228197245.jpg',
+                        'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
+                    ],
+                    videoSrc: '/src/assets/videos/classirico_video.mp4',
+                    wspText: 'Hola, vi el ClassiRico Truffle (Café Negro) en la página de Gano Itouch Chile y me gustaría consultar su valor y disponibilidad.',
+                    nextId: 'latterico-truffle'
+                },
+                'latterico-truffle': {
+                    id: 'latterico-truffle',
+                    title: 'LatteRico Truffle',
+                    heroImage: '/src/assets/images/product_latterico_truffle.jpg',
+                    meta: [
+                        { label: 'Formato', value: 'Caja · 20 Sobres (300g neto)' },
+                        { label: 'Origen', value: 'Kedah, Malasia · Plantaciones Orgánicas' },
+                        { label: 'Composición', value: 'Café Selecto, Crema Sedosa, Ganoderma & Trufa' },
+                        { label: 'Beneficio Principal', value: 'Textura Cremosa, Digestión Suave & Bienestar' }
+                    ],
+                    editorialText: 'La expresión más sedosa y reconfortante de la colección Truffle. Combina granos selectos de café suavemente tostados, crema vegetal de alta calidad, Ganoderma Lucidum y extracto aromático de trufa negra. Una taza espumosa y equilibrada, perfecta para quienes buscan un café con leche gourmet que reconforte el cuerpo y cuide la digestión.',
+                    gallery: [
+                        '/src/assets/images/product_latterico_truffle.jpg',
+                        'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        '/src/assets/images/latterico_angle_topdown.jpg',
+                        '/src/assets/images/latterico_wide_closing.jpg'
+                    ],
+                    videoSrc: '/src/assets/videos/latterico_video.mp4',
+                    wspText: 'Hola, vi el LatteRico Truffle (Café con Leche) en la página de Gano Itouch Chile y me gustaría consultar su valor y disponibilidad.',
+                    nextId: 'shokorico-truffle'
+                },
+                'shokorico-truffle': {
+                    id: 'shokorico-truffle',
+                    title: 'ShokoRico Truffle',
+                    heroImage: '/src/assets/images/product_mocha_premium_1791228217124.jpg',
+                    meta: [
+                        { label: 'Formato', value: 'Caja · 20 Sobres (400g neto)' },
+                        { label: 'Origen', value: 'Kedah, Malasia · Cacao Fino Seleccionado' },
+                        { label: 'Composición', value: 'Cacao Puro Gourmet, Ganoderma & Trufa Negra' },
+                        { label: 'Beneficio Principal', value: 'Poder Antioxidante, Vitalidad & Placer Saludable' }
+                    ],
+                    editorialText: 'Una bebida indulgente formulada con cacao fino de alta pureza, notas envolventes de trufa negra y el aporte nutricional del Ganoderma Lucidum. Su perfil cremoso y achocolatado conquista a toda la familia, aportando magnesio y antioxidantes naturales que promueven vitalidad y serenidad sin pesadez.',
+                    gallery: [
+                        '/src/assets/images/product_mocha_premium_1791228217124.jpg',
+                        'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        '/src/assets/images/shokorico_angle_detail.jpg',
+                        'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
+                    ],
+                    wspText: 'Hola, vi el ShokoRico Truffle (Cacao Suizo) en la página de Gano Itouch Chile y me gustaría consultar su valor y disponibilidad.',
+                    nextId: 'classirico-truffle'
+                }
+            };
+
+            // Aliases for backwards compatibility with previous links/hashes
+            PRODUCTS['cafe-trufa'] = PRODUCTS['classirico-truffle'];
+            PRODUCTS['extracto-ganoderma'] = PRODUCTS['latterico-truffle'];
+            PRODUCTS['mocha-premium'] = PRODUCTS['shokorico-truffle'];
+            PRODUCTS['te-oolong'] = PRODUCTS['classirico-truffle'];
+            PRODUCTS['trilogia-truffle'] = PRODUCTS['classirico-truffle'];
+
+            const mainHomeView = document.getElementById('mainHomeView');
+            const productDetailView = document.getElementById('productDetailView');
+            const headerBackBtn = document.getElementById('headerBackBtn');
+            const detailBackBottomBtn = document.getElementById('detailBackBottomBtn');
+            const detailNextProductBtn = document.getElementById('detailNextProductBtn');
+            const brandLogoLink = document.getElementById('brandLogoLink');
+
+            let currentProductId = null;
+
+            function openProductDetail(productId, pushHistory = true) {
+                const product = PRODUCTS[productId];
+                if (!product) return;
+
+                currentProductId = productId;
+
+                // Seamless Hero Media: Video Hero ("Cara Principal") vs Imagen Estática
+                const heroImg = document.getElementById('detailHeroImg');
+                const heroVideo = document.getElementById('detailHeroVideo');
+                const heroVideoSource = document.getElementById('detailHeroVideoSource');
+
+                if (product.videoSrc && heroVideo && heroVideoSource) {
+                    heroImg.classList.add('hidden');
+                    heroVideo.classList.remove('hidden');
+                    if (heroVideoSource.getAttribute('src') !== product.videoSrc) {
+                        heroVideoSource.src = product.videoSrc;
+                        heroVideo.load();
+                    }
+                    heroVideo.play().catch(() => { });
+                } else {
+                    if (heroVideo) {
+                        heroVideo.pause();
+                        heroVideo.classList.add('hidden');
+                    }
+                    heroImg.classList.remove('hidden');
+                    heroImg.src = product.heroImage;
+                    heroImg.alt = product.title;
+                }
+
+                document.getElementById('detailTitle').textContent = product.title;
+
+                // Populate 4 Bottom Bar Specs
+                product.meta.forEach((item, idx) => {
+                    const num = idx + 1;
+                    document.getElementById(`detailMeta${num}Label`).textContent = item.label;
+                    document.getElementById(`detailMeta${num}Value`).textContent = item.value;
+                });
+
+                // Populate Editorial Short Text
+                document.getElementById('detailEditorialText').textContent = product.editorialText;
+
+                // Populate Gallery Images
+                product.gallery.forEach((imgUrl, idx) => {
+                    const num = idx + 1;
+                    const imgEl = document.getElementById(`detailGallery${num}`);
+                    if (imgEl) {
+                        imgEl.src = imgUrl;
+                        imgEl.alt = `${product.title} - Vista ${num}`;
+                    }
+                });
+
+                // Populate WhatsApp CTA with pre-filled product message
+                document.getElementById('detailCtaHeading').textContent = `¿Te interesa pedir ${product.title}?`;
+                const customMsg = product.wspText || `Hola, vi el producto "${product.title}" en la página de Gano Itouch Chile y me gustaría consultar su disponibilidad y valor.`;
+                const wspMessage = encodeURIComponent(customMsg);
+                document.getElementById('detailWhatsappBtn').href = `https://wa.me/56981611939?text=${wspMessage}`;
+
+                // Populate Next Product Button
+                const nextProduct = PRODUCTS[product.nextId];
+                if (nextProduct) {
+                    document.getElementById('detailNextProductName').textContent = nextProduct.title;
+                    detailNextProductBtn.onclick = () => openProductDetail(nextProduct.id, true);
+                }
+
+                // Switch Views
+                mainHomeView.classList.add('hidden');
+                productDetailView.classList.remove('hidden');
+                headerBackBtn.classList.remove('hidden');
+
+                window.scrollTo({ top: 0, behavior: 'instant' });
+
+                if (pushHistory) {
+                    history.pushState({ productId }, '', `#producto-${productId}`);
+                }
+            }
+
+            function closeProductDetail(scrollToSection = '#productos', pushHistory = true) {
+                if (!currentProductId && productDetailView.classList.contains('hidden')) return;
+                currentProductId = null;
+
+                const heroVideo = document.getElementById('detailHeroVideo');
+                if (heroVideo) {
+                    heroVideo.pause();
+                }
+
+                productDetailView.classList.add('hidden');
+                mainHomeView.classList.remove('hidden');
+                headerBackBtn.classList.add('hidden');
+
+                if (pushHistory) {
+                    history.pushState({}, '', scrollToSection);
+                }
+
+                const targetEl = document.querySelector(scrollToSection);
+                if (targetEl) {
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            // Loop and auto-resume safeguard for Hero Video
+            const detailHeroVideo = document.getElementById('detailHeroVideo');
+            if (detailHeroVideo) {
+                detailHeroVideo.addEventListener('pause', () => {
+                    const activeProduct = currentProductId ? PRODUCTS[currentProductId] : null;
+                    if (activeProduct && activeProduct.videoSrc && !productDetailView.classList.contains('hidden')) {
+                        detailHeroVideo.play().catch(() => { });
+                    }
+                });
+            }
+
+            // Attach click & keyboard listeners to Product Cards
+            document.querySelectorAll('[data-product-card]').forEach(card => {
+                const productId = card.getAttribute('data-product-card');
+                card.addEventListener('click', () => openProductDetail(productId, true));
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openProductDetail(productId, true);
+                    }
+                });
+            });
+
+            // Back buttons
+            headerBackBtn.addEventListener('click', () => closeProductDetail('#productos', true));
+            detailBackBottomBtn.addEventListener('click', () => closeProductDetail('#productos', true));
+
+            // Brand logo returns to home
+            brandLogoLink.addEventListener('click', (e) => {
+                if (currentProductId) {
+                    e.preventDefault();
+                    closeProductDetail('#inicio', true);
+                }
+            });
+
+            // ESC key closes product detail view if open
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && currentProductId && !isMenuOpen) {
+                    closeProductDetail('#productos', true);
+                }
+            });
+
+            // Handle browser Back/Forward buttons
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash || '';
+                if (hash.startsWith('#producto-')) {
+                    const pid = hash.replace('#producto-', '');
+                    if (PRODUCTS[pid]) {
+                        openProductDetail(pid, false);
+                        return;
+                    }
+                }
+                closeProductDetail(hash || '#productos', false);
+            });
+
+            // Check initial URL hash on load
+            if (window.location.hash && window.location.hash.startsWith('#producto-')) {
+                const initialPid = window.location.hash.replace('#producto-', '');
+                if (PRODUCTS[initialPid]) {
+                    openProductDetail(initialPid, false);
+                }
+            }
+
+            // =========================================================================
+            // 2. Full-screen Overlay Menu Logic
+            // =========================================================================
             const menuToggle = document.getElementById('menuToggle');
             const overlayMenu = document.getElementById('overlayMenu');
             const menuLinks = document.querySelectorAll('.menu-link');
@@ -333,12 +977,12 @@
             menuToggle.addEventListener('click', () => {
                 isMenuOpen = !isMenuOpen;
                 document.body.classList.toggle('menu-open');
-                
+
                 if (isMenuOpen) {
                     // Show overlay
                     overlayMenu.classList.remove('opacity-0', 'pointer-events-none');
                     overlayMenu.classList.add('opacity-100', 'pointer-events-auto');
-                    
+
                     // Animate hamburger to 'X' with structural look
                     menuToggle.querySelector('.menu-line-1').style.transform = 'rotate(-45deg) translate(-6px, 6px)';
                     menuToggle.querySelector('.menu-line-1').style.width = '2rem';
@@ -357,7 +1001,7 @@
                     // Hide overlay
                     overlayMenu.classList.remove('opacity-100', 'pointer-events-auto');
                     overlayMenu.classList.add('opacity-0', 'pointer-events-none');
-                    
+
                     // Reset hamburger
                     menuToggle.querySelector('.menu-line-1').style.transform = 'none';
                     menuToggle.querySelector('.menu-line-1').style.width = '2rem';
@@ -373,14 +1017,21 @@
                 }
             });
 
-            // Close menu when clicking a link
+            // Close menu when clicking a link (and exit product detail view if open)
             menuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if(isMenuOpen) menuToggle.click();
+                link.addEventListener('click', (e) => {
+                    const targetHref = link.getAttribute('href');
+                    if (isMenuOpen) menuToggle.click();
+                    if (currentProductId && targetHref) {
+                        e.preventDefault();
+                        closeProductDetail(targetHref, true);
+                    }
                 });
             });
 
-            // 2. Standard Reveal Observer (Images, Headers)
+            // =========================================================================
+            // 3. Standard Reveal Observer (Images, Headers)
+            // =========================================================================
             const revealOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -391,7 +1042,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-revealed');
-                        observer.unobserve(entry.target); 
+                        observer.unobserve(entry.target);
                     }
                 });
             }, revealOptions);
@@ -400,21 +1051,20 @@
                 revealObserver.observe(el);
             });
 
-            // 3. Text Illumination Observer (For paragraphs fading/sliding in smoothly)
+            // =========================================================================
+            // 4. Text Illumination Observer (For paragraphs fading/sliding in smoothly)
+            // =========================================================================
             const illuminateOptions = {
                 root: null,
                 rootMargin: '0px 0px -15% 0px',
-                threshold: 0.1 
+                threshold: 0.1
             };
 
-            const illuminateObserver = new IntersectionObserver((entries, observer) => {
+            const illuminateObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-illuminated');
-                        // Optional: Unobserve if you want it to happen only once
-                        // observer.unobserve(entry.target);
                     } else {
-                        // Remove class to repeat effect on scroll up/down
                         entry.target.classList.remove('is-illuminated');
                     }
                 });
@@ -423,7 +1073,60 @@
             document.querySelectorAll('.illuminate-text').forEach((el) => {
                 illuminateObserver.observe(el);
             });
+
+            // =========================================================================
+            // 5. Contact & Quote Form Async Submission & Visual Feedback
+            // =========================================================================
+            const contactForm = document.getElementById('contactForm');
+            const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+            const contactFormStatus = document.getElementById('contactFormStatus');
+
+            if (contactForm && contactSubmitBtn && contactFormStatus) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('contactName').value.trim();
+                    const email = document.getElementById('contactEmail').value.trim();
+                    const phone = document.getElementById('contactPhone').value.trim();
+                    const product = document.getElementById('contactProduct').value;
+                    const message = document.getElementById('contactMessage').value.trim();
+
+                    // Estado cargando
+                    contactSubmitBtn.disabled = true;
+                    contactSubmitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+                    contactSubmitBtn.innerHTML = '<span>Enviando solicitud...</span>';
+                    contactFormStatus.classList.add('hidden');
+                    contactFormStatus.className = 'text-sm py-3 px-4 border';
+
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ name, email, phone, product, message })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            contactFormStatus.textContent = '✓ ' + (data.message || 'Tu consulta fue enviada con éxito.');
+                            contactFormStatus.className = 'text-sm py-3 px-4 border border-brand-accent/60 bg-brand-accent/10 text-brand-cream block';
+                            contactForm.reset();
+                        } else {
+                            contactFormStatus.textContent = '⚠ ' + (data.error || 'No se pudo enviar la consulta. Intenta nuevamente.');
+                            contactFormStatus.className = 'text-sm py-3 px-4 border border-red-500/50 bg-red-950/20 text-red-300 block';
+                        }
+                    } catch (err) {
+                        contactFormStatus.textContent = '⚠ Error al conectar con el servidor. Puedes escribirnos directamente por WhatsApp.';
+                        contactFormStatus.className = 'text-sm py-3 px-4 border border-red-500/50 bg-red-950/20 text-red-300 block';
+                    } finally {
+                        contactSubmitBtn.disabled = false;
+                        contactSubmitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                        contactSubmitBtn.innerHTML = '<span>Enviar Mensaje</span><span class="text-sm">→</span>';
+                    }
+                });
+            }
         });
     </script>
 </body>
+
 </html>
