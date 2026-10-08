@@ -1,5 +1,25 @@
 [
   {
+    "id": "msg_1791423924333_pbrsd",
+    "name": "Cliente QA Automatizado",
+    "email": "qa@ganoitouch.cl",
+    "phone": "+56987654321",
+    "message": "Solicitud de prueba automatizada QA para verificar persistencia",
+    "product": "LatteRico Truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-08T01:45:24.334Z"
+  },
+  {
+    "id": "msg_1791423924071_1ojee",
+    "name": "Cliente Prueba",
+    "email": "test@ganoitouch.cl",
+    "phone": "+56912345678",
+    "message": "Consulta de cotización para ClassiRico",
+    "product": "classirico-truffle",
+    "ip": "127.0.0.1",
+    "createdAt": "2026-10-08T01:45:24.071Z"
+  },
+  {
     "id": "msg_1791405832455_n5r0l",
     "name": "Cliente QA Automatizado",
     "email": "qa@ganoitouch.cl",

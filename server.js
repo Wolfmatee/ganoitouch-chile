@@ -67,6 +67,7 @@ const PRODUCTS_CATALOG = [
     keyIngredients: 'Cacao Puro Gourmet, Ganoderma & Trufa Negra',
     mainBenefit: 'Poder Antioxidante, Vitalidad & Placer Saludable',
     image: '/src/assets/images/product_mocha_premium_1791228217124.jpg',
+    video: '/src/assets/videos/shokorico_video.mp4',
     inStock: true
   }
 ];

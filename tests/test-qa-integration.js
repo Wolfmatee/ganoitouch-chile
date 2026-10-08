@@ -85,14 +85,17 @@ assert.ok(indexHtml.data.includes('contactForm'), 'index.html debe contener el f
 assert.ok(!indexHtml.data.includes('data-product-card="te-oolong-ganoderma"'), 'index.html no debe contener Té Oolong en la grilla');
 console.log('✓ QA 8: index.html renderiza la grilla de 3 productos sin Té Oolong');
 
-// 9. Cara Principal con Video Hero (LatteRico y ClassiRico)
+// 9. Cara Principal con Video Hero (LatteRico, ClassiRico y ShokoRico)
 assert.ok(indexHtml.data.includes('id="detailHeroVideo"'), 'index.html debe contener detailHeroVideo en el Hero principal');
 assert.ok(indexHtml.data.includes('/src/assets/videos/latterico_video.mp4'), 'index.html debe referenciar latterico_video.mp4');
 assert.ok(indexHtml.data.includes('/src/assets/videos/classirico_video.mp4'), 'index.html debe referenciar classirico_video.mp4');
+assert.ok(indexHtml.data.includes('/src/assets/videos/shokorico_video.mp4'), 'index.html debe referenciar shokorico_video.mp4');
 
 const classiricoVideoReq = await req('/src/assets/videos/classirico_video.mp4');
 assert.strictEqual(classiricoVideoReq.status, 200, 'Video de ClassiRico debe responder 200 OK');
-console.log('✓ QA 9: Video 3D en la cara principal (Hero) de LatteRico y ClassiRico configurado y verificado');
+const shokoricoVideoReq = await req('/src/assets/videos/shokorico_video.mp4');
+assert.strictEqual(shokoricoVideoReq.status, 200, 'Video de ShokoRico debe responder 200 OK');
+console.log('✓ QA 9: Video 3D en la cara principal (Hero) de LatteRico, ClassiRico y ShokoRico configurado y verificado');
 
 console.log('==================================================');
 console.log('   VEREDICTO FINAL DE QA: APROBADO (9/9 PRUEBAS)');
