@@ -361,12 +361,20 @@
                     <h2 class="font-serif text-4xl md:text-6xl text-brand-cream">Nuestros <span
                             class="italic">Productos</span></h2>
                 </div>
-                <p class="font-sans font-light text-sm md:text-base text-brand-light max-w-md">
-                    Selecciona cualquier producto de la colección para explorar su composición, galería detallada y
-                    disponibilidad directa.
-                </p>
+                <div class="max-w-md flex flex-col items-start md:items-end gap-3">
+                    <p class="font-sans font-light text-sm md:text-base text-brand-light text-left md:text-right">
+                        Selecciona cualquier producto de la colección para explorar su composición, galería detallada y
+                        disponibilidad directa.
+                    </p>
+                    <a href="#otros-productos" id="btnOtrosProductos"
+                        class="group inline-flex items-center gap-2 font-sans text-xs tracking-widest uppercase text-brand-accent hover:text-brand-cream transition-colors">
+                        <span>Otros</span>
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                </div>
             </div>
 
+            <!-- Grilla 1: Colección Gourmet de Café & Cacao -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start">
 
                 <!-- Producto 1: ClassiRico Truffle -->
@@ -438,6 +446,91 @@
                     </div>
                 </article>
 
+            </div>
+
+            <!-- ======================================================================= -->
+            <!-- OTROS PRODUCTOS (Cuidado Personal, Higiene & Bienestar con Ganoderma)   -->
+            <!-- ======================================================================= -->
+            <div id="otros-productos" class="mt-32 pt-20 border-t border-white/10 scroll-mt-28">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal-up gap-8">
+                    <div>
+                        <span class="block font-sans text-xs uppercase tracking-[0.35em] text-brand-accent mb-4">Cuidado Personal & Higiene</span>
+                        <h3 class="font-serif text-3xl md:text-5xl text-brand-cream">Línea <span class="italic">Botánica Ganoderma</span></h3>
+                    </div>
+                    <p class="font-sans font-light text-sm md:text-base text-brand-light max-w-md">
+                        Productos botánicos enriquecidos con extracto orgánico de Ganoderma Lucidum para la salud capilar, dental y regeneración de la piel.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start">
+
+                    <!-- Producto 4: Shampoo Ganoderma -->
+                    <article data-product-card="shampoo-ganoderma" tabindex="0" role="button"
+                        aria-label="Ver detalles de Shampoo Ganoderma"
+                        class="group reveal-up cursor-pointer focus:outline-none">
+                        <div class="image-container w-full aspect-[3/4] mb-6 bg-[#1a1412]">
+                            <img src="/src/assets/images/product_shampoo_ganoderma.jpg" alt="Shampoo Ganoderma Lucidum"
+                                referrerpolicy="no-referrer"
+                                class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                            <div>
+                                <h4
+                                    class="font-serif text-2xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">
+                                    Shampoo Ganoderma</h4>
+                                <p class="font-sans text-sm font-light text-brand-light">Cuidado capilar orgánico & fortalecimiento</p>
+                            </div>
+                            <span
+                                class="font-sans text-xs tracking-widest uppercase text-brand-light group-hover:text-brand-cream transition-colors shrink-0">Ver
+                                →</span>
+                        </div>
+                    </article>
+
+                    <!-- Producto 5: Pasta Dental Ganozhi -->
+                    <article data-product-card="pasta-dental-ganoderma" tabindex="0" role="button"
+                        aria-label="Ver detalles de Pasta Dental Ganozhi"
+                        class="group reveal-up cursor-pointer md:mt-12 focus:outline-none" style="transition-delay: 150ms;">
+                        <div class="image-container w-full aspect-[3/4] mb-6 bg-[#1a1412]">
+                            <img src="/src/assets/images/product_toothpaste_ganoderma.jpg" alt="Pasta Dental Ganozhi"
+                                referrerpolicy="no-referrer"
+                                class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                            <div>
+                                <h4
+                                    class="font-serif text-2xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">
+                                    Pasta Dental Ganozhi</h4>
+                                <p class="font-sans text-sm font-light text-brand-light">Fórmula botánica con menta & cero flúor</p>
+                            </div>
+                            <span
+                                class="font-sans text-xs tracking-widest uppercase text-brand-light group-hover:text-brand-cream transition-colors shrink-0">Ver
+                                →</span>
+                        </div>
+                    </article>
+
+                    <!-- Producto 6: Jabón Botánico Ganozhi -->
+                    <article data-product-card="jabon-ganoderma" tabindex="0" role="button"
+                        aria-label="Ver detalles de Jabón Botánico Ganozhi"
+                        class="group reveal-up cursor-pointer focus:outline-none" style="transition-delay: 300ms;">
+                        <div class="image-container w-full aspect-[3/4] mb-6 bg-[#1a1412]">
+                            <img src="/src/assets/images/product_soap_ganoderma.jpg" alt="Jabón Botánico Ganozhi"
+                                referrerpolicy="no-referrer"
+                                class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex items-baseline justify-between gap-4">
+                            <div>
+                                <h4
+                                    class="font-serif text-2xl text-brand-cream mb-2 group-hover:text-brand-accent transition-colors">
+                                    Jabón Ganozhi</h4>
+                                <p class="font-sans text-sm font-light text-brand-light">Barra artesanal con leche de cabra & vitamina E</p>
+                            </div>
+                            <span
+                                class="font-sans text-xs tracking-widest uppercase text-brand-light group-hover:text-brand-cream transition-colors shrink-0">Ver
+                                →</span>
+                        </div>
+                    </article>
+
+                </div>
             </div>
         </section>
 
@@ -530,6 +623,9 @@
                                     <option value="ClassiRico Truffle">ClassiRico Truffle (Café Negro)</option>
                                     <option value="LatteRico Truffle">LatteRico Truffle (Café Latte)</option>
                                     <option value="ShokoRico Truffle">ShokoRico Truffle (Cacao Gourmet)</option>
+                                    <option value="Shampoo Ganoderma">Shampoo Ganoderma (Cuidado Capilar)</option>
+                                    <option value="Pasta Dental Ganozhi">Pasta Dental Ganozhi (Sin Flúor)</option>
+                                    <option value="Jabón Ganozhi">Jabón Ganozhi (Cuidado Dérmico)</option>
                                 </select>
                             </div>
 
@@ -783,6 +879,66 @@
                     ],
                     videoSrc: '/src/assets/videos/shokorico_video.mp4',
                     wspText: 'Hola, vi el ShokoRico Truffle (Cacao Suizo) en la página de Gano Itouch Chile y me gustaría consultar su valor y disponibilidad.',
+                    nextId: 'shampoo-ganoderma'
+                },
+                'shampoo-ganoderma': {
+                    id: 'shampoo-ganoderma',
+                    title: 'Shampoo Ganoderma',
+                    heroImage: '/src/assets/images/product_shampoo_ganoderma.jpg',
+                    meta: [
+                        { label: 'Formato', value: 'Frasco Dosificador · 500ml' },
+                        { label: 'Origen', value: 'Kedah, Malasia · Extracto Botánico' },
+                        { label: 'Composición', value: 'Ganoderma Lucidum, Pantenol & Aceites Esenciales' },
+                        { label: 'Beneficio Principal', value: 'Fortalecimiento Capilar, Brillo Natural & Cuero Cabelludo Sano' }
+                    ],
+                    editorialText: 'Formulación botánica de alta gama desarrollada para revitalizar la fibra capilar y nutrir profundamente el folículo piloso. Enriquecido con el poder antioxidante del extracto estandarizado de Ganoderma Lucidum, limpia suavemente sin resecar, estimula el crecimiento natural y devuelve la vitalidad y brillo sedoso a todo tipo de cabello.',
+                    gallery: [
+                        '/src/assets/images/product_shampoo_ganoderma.jpg',
+                        'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
+                    ],
+                    wspText: 'Hola, me interesa conocer más sobre el Shampoo con Ganoderma Lucidum en la página de Gano Itouch Chile y consultar disponibilidad.',
+                    nextId: 'pasta-dental-ganoderma'
+                },
+                'pasta-dental-ganoderma': {
+                    id: 'pasta-dental-ganoderma',
+                    title: 'Pasta Dental Ganozhi',
+                    heroImage: '/src/assets/images/product_toothpaste_ganoderma.jpg',
+                    meta: [
+                        { label: 'Formato', value: 'Tubo · 150g' },
+                        { label: 'Origen', value: 'Fórmula Natural · Kedah, Malasia' },
+                        { label: 'Composición', value: 'Ganoderma Lucidum Puro, Menta Silvestre & Alginato' },
+                        { label: 'Beneficio Principal', value: '100% Libre de Flúor Químico, Encías Fuertes & Aliento Fresco' }
+                    ],
+                    editorialText: 'Crema dental botánica sin flúor, sacarina ni colorantes artificiales. Integra las propiedades antibacterianas y regenerativas del Ganoderma Lucidum con el frescor revitalizante de la menta orgánica. Protege el esmalte dental, fortalece las encías sensibles y previene la placa bacteriana de forma segura.',
+                    gallery: [
+                        '/src/assets/images/product_toothpaste_ganoderma.jpg',
+                        'https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
+                    ],
+                    wspText: 'Hola, me interesa conocer más sobre la Pasta Dental Ganozhi (Sin Flúor) en la página de Gano Itouch Chile y consultar disponibilidad.',
+                    nextId: 'jabon-ganoderma'
+                },
+                'jabon-ganoderma': {
+                    id: 'jabon-ganoderma',
+                    title: 'Jabón Ganozhi',
+                    heroImage: '/src/assets/images/product_soap_ganoderma.jpg',
+                    meta: [
+                        { label: 'Formato', value: 'Barra Artesanal · 100g' },
+                        { label: 'Origen', value: 'Elaboración Botánica · Gano Excel' },
+                        { label: 'Composición', value: 'Ganoderma Lucidum, Aceite de Leche de Cabra & Vitamina E' },
+                        { label: 'Beneficio Principal', value: 'Nutrición Celular, Antienvejecimiento & Suavidad Dérmica' }
+                    ],
+                    editorialText: 'Jabón botánico formulado con extracto puro de Ganoderma Lucidum y enriquecido con aceite de leche de cabra y vitamina E. Limpia la piel con extrema delicadeza, restaurando el manto hidrolipídico y aportando antioxidantes naturales que combaten el daño oxidativo y dejan la piel radiante y tersa.',
+                    gallery: [
+                        '/src/assets/images/product_soap_ganoderma.jpg',
+                        'https://images.unsplash.com/photo-1607006314644-8c8868a8f623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+                        'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'
+                    ],
+                    wspText: 'Hola, me interesa conocer más sobre el Jabón Botánico Ganozhi en la página de Gano Itouch Chile y consultar disponibilidad.',
                     nextId: 'classirico-truffle'
                 }
             };

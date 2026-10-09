@@ -69,6 +69,39 @@ const PRODUCTS_CATALOG = [
     image: '/src/assets/images/product_mocha_premium_1791228217124.jpg',
     video: '/src/assets/videos/shokorico_video.mp4',
     inStock: true
+  },
+  {
+    id: 'shampoo-ganoderma',
+    title: 'Shampoo Ganoderma',
+    subtitle: 'Cuidado capilar orgánico con Ganoderma Lucidum',
+    format: 'Frasco Dosificador · 500ml',
+    origin: 'Kedah, Malasia · Plantaciones Orgánicas',
+    keyIngredients: 'Ganoderma Lucidum, Pantenol & Aceites Botánicos',
+    mainBenefit: 'Fortalecimiento Capilar, Brillo Natural & Cuero Cabelludo Sano',
+    image: '/src/assets/images/product_shampoo_ganoderma.jpg',
+    inStock: true
+  },
+  {
+    id: 'pasta-dental-ganoderma',
+    title: 'Pasta Dental Ganozhi',
+    subtitle: 'Fórmula botánica sin flúor con menta silvestre',
+    format: 'Tubo · 150g',
+    origin: 'Kedah, Malasia · Fórmula Botánica',
+    keyIngredients: 'Ganoderma Lucidum Puro, Menta Silvestre & Alginato',
+    mainBenefit: '100% Libre de Flúor Químico, Encías Fuertes & Aliento Fresco',
+    image: '/src/assets/images/product_toothpaste_ganoderma.jpg',
+    inStock: true
+  },
+  {
+    id: 'jabon-ganoderma',
+    title: 'Jabón Ganozhi',
+    subtitle: 'Barra artesanal botánica con leche de cabra y vitamina E',
+    format: 'Barra Artesanal · 100g',
+    origin: 'Elaboración Botánica · Gano Excel',
+    keyIngredients: 'Ganoderma Lucidum, Aceite de Leche de Cabra & Vitamina E',
+    mainBenefit: 'Nutrición Celular, Antienvejecimiento & Suavidad Dérmica',
+    image: '/src/assets/images/product_soap_ganoderma.jpg',
+    inStock: true
   }
 ];
 

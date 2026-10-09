@@ -31,8 +31,8 @@ console.log('✓ QA 1: Endpoint /api/health responde 200 OK');
 const prod = await req('/api/products');
 assert.strictEqual(prod.status, 200, 'Catálogo falló');
 const prodBody = JSON.parse(prod.data);
-assert.strictEqual(prodBody.count, 3, 'Catálogo debe tener los 3 productos oficiales');
-console.log('✓ QA 2: Endpoint /api/products retorna los 3 productos oficiales de GanoCafé');
+assert.strictEqual(prodBody.count, 6, 'Catálogo debe tener los 6 productos oficiales (3 café + 3 botánicos)');
+console.log('✓ QA 2: Endpoint /api/products retorna los 6 productos oficiales (Café & Cuidado Personal)');
 
 // 3. Contact Form Submission API
 const contactSubmission = await req('/api/contact', {
@@ -63,14 +63,20 @@ assert.strictEqual(favicon.status, 200, 'Favicon no responde 200');
 assert.ok(favicon.data.includes('<svg'), 'Favicon debe ser un archivo SVG válido');
 console.log('✓ QA 5: Favicon oficial /src/assets/favicon.svg cargado con éxito');
 
-// 6. Nuevas Imágenes de Galería y Ángulos Fotográficos (LatteRico y ShokoRico)
+// 6. Nuevas Imágenes de Galería, Ángulos y Cuidado Personal
 const latteTopdown = await req('/src/assets/images/latterico_angle_topdown.jpg');
 assert.strictEqual(latteTopdown.status, 200, 'Imagen cenital de LatteRico debe responder 200');
 const latteClosing = await req('/src/assets/images/latterico_wide_closing.jpg');
 assert.strictEqual(latteClosing.status, 200, 'Imagen de cierre latte auténtico debe responder 200');
 const shokoDetail = await req('/src/assets/images/shokorico_angle_detail.jpg');
 assert.strictEqual(shokoDetail.status, 200, 'Imagen detallada de ShokoRico debe responder 200');
-console.log('✓ QA 6: Nuevas fotos de ángulos y galería coherente para LatteRico y ShokoRico disponibles (200 OK)');
+const shampooImg = await req('/src/assets/images/product_shampoo_ganoderma.jpg');
+assert.strictEqual(shampooImg.status, 200, 'Imagen de Shampoo debe responder 200');
+const toothpasteImg = await req('/src/assets/images/product_toothpaste_ganoderma.jpg');
+assert.strictEqual(toothpasteImg.status, 200, 'Imagen de Pasta Dental debe responder 200');
+const soapImg = await req('/src/assets/images/product_soap_ganoderma.jpg');
+assert.strictEqual(soapImg.status, 200, 'Imagen de Jabón debe responder 200');
+console.log('✓ QA 6: Fotos de catálogo y línea de cuidado personal disponibles (200 OK)');
 
 // 7. Prueba del Bug 404 (archivos estáticos inexistentes NO deben devolver HTML)
 const ghostFile = await req('/archivo-que-no-existe.png');
@@ -78,12 +84,14 @@ assert.strictEqual(ghostFile.status, 404, 'Archivo no encontrado debe ser 404');
 assert.ok(!ghostFile.data.includes('<!DOCTYPE html>'), '404 no debe contener HTML de index.html');
 console.log('✓ QA 7: Bug 404 resuelto: Archivos inexistentes responden 404 real, sin HTML');
 
-// 8. Entrega del documento principal HTML
+// 8. Entrega del documento principal HTML y botón Otros
 const indexHtml = await req('/');
 assert.strictEqual(indexHtml.status, 200, 'Index HTML debe responder 200');
 assert.ok(indexHtml.data.includes('contactForm'), 'index.html debe contener el formulario de contacto');
 assert.ok(!indexHtml.data.includes('data-product-card="te-oolong-ganoderma"'), 'index.html no debe contener Té Oolong en la grilla');
-console.log('✓ QA 8: index.html renderiza la grilla de 3 productos sin Té Oolong');
+assert.ok(indexHtml.data.includes('id="btnOtrosProductos"'), 'index.html debe contener el botón/enlace Otros');
+assert.ok(indexHtml.data.includes('id="otros-productos"'), 'index.html debe contener la sección de Otros Productos');
+console.log('✓ QA 8: index.html renderiza botón "Otros →" y sección de cuidado personal');
 
 // 9. Cara Principal con Video Hero (LatteRico, ClassiRico y ShokoRico)
 assert.ok(indexHtml.data.includes('id="detailHeroVideo"'), 'index.html debe contener detailHeroVideo en el Hero principal');
