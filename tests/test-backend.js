@@ -34,8 +34,8 @@ console.log('✓ Test 1: Healthcheck OK');
 const products = await request('/api/products');
 assert.strictEqual(products.status, 200, 'Products debe retornar 200');
 const prodJson = JSON.parse(products.body);
-assert.strictEqual(prodJson.count, 6, 'El catálogo debe contener 6 productos (3 café + 3 cuidado personal)');
-console.log('✓ Test 2: Catálogo de productos OK (6 productos: café y cuidado personal)');
+assert.strictEqual(prodJson.count, 8, 'El catálogo debe contener 8 productos (3 café + 5 cuidado personal)');
+console.log('✓ Test 2: Catálogo de productos OK (8 productos: café y cuidado personal)');
 
 // Test 3: Validación de contacto (Payload inválido)
 const badContact = await request('/api/contact', {

@@ -31,8 +31,8 @@ console.log('✓ QA 1: Endpoint /api/health responde 200 OK');
 const prod = await req('/api/products');
 assert.strictEqual(prod.status, 200, 'Catálogo falló');
 const prodBody = JSON.parse(prod.data);
-assert.strictEqual(prodBody.count, 6, 'Catálogo debe tener los 6 productos oficiales (3 café + 3 botánicos)');
-console.log('✓ QA 2: Endpoint /api/products retorna los 6 productos oficiales (Café & Cuidado Personal)');
+assert.strictEqual(prodBody.count, 8, 'Catálogo debe tener los 8 productos oficiales (3 café + 5 botánicos)');
+console.log('✓ QA 2: Endpoint /api/products retorna los 8 productos oficiales (Café & Cuidado Personal)');
 
 // 3. Contact Form Submission API
 const contactSubmission = await req('/api/contact', {
@@ -72,6 +72,10 @@ const shokoDetail = await req('/src/assets/images/shokorico_angle_detail.jpg');
 assert.strictEqual(shokoDetail.status, 200, 'Imagen detallada de ShokoRico debe responder 200');
 const shampooImg = await req('/src/assets/images/product_shampoo_ganoderma.jpg');
 assert.strictEqual(shampooImg.status, 200, 'Imagen de Shampoo debe responder 200');
+const conditionerImg = await req('/src/assets/images/product_conditioner_ganoderma.jpg');
+assert.strictEqual(conditionerImg.status, 200, 'Imagen de Acondicionador debe responder 200');
+const scrubImg = await req('/src/assets/images/product_scrub_ganoderma.jpg');
+assert.strictEqual(scrubImg.status, 200, 'Imagen de Scrub debe responder 200');
 const toothpasteImg = await req('/src/assets/images/product_toothpaste_ganoderma.jpg');
 assert.strictEqual(toothpasteImg.status, 200, 'Imagen de Pasta Dental debe responder 200');
 const soapImg = await req('/src/assets/images/product_soap_ganoderma.jpg');
